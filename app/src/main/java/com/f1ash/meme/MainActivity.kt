@@ -1,6 +1,6 @@
 package com.f1ash.meme
 
-import android.app.Notification
+
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         b.progressBar.visibility = View.VISIBLE
         APIImageUrl = "https://meme-api.herokuapp.com/gimme"
-        val queue = Volley.newRequestQueue(this)
 
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.GET, APIImageUrl, null,
@@ -66,10 +65,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         // Access the RequestQueue through your singleton class.
-        queue.add(jsonObjectRequest)
-//        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
+//        queue.add(jsonObjectRequest)
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
 
     }
+
     fun ShareMeme(view: android.view.View) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plane"
@@ -81,3 +81,4 @@ class MainActivity : AppCompatActivity() {
         LoadMeme()
     }
 }
+
